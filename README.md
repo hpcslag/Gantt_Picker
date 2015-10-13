@@ -1,6 +1,8 @@
 # Gantt_Picker
 Gantt Picker 
 
+![demo picture](http://i.imgur.com/oJpUIzk.png)
+
 ## Usage
 `html class`
  - fixing
