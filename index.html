@@ -1,629 +1,238 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<title></title>
-	<style>
-	*{
-		font-family: "微軟正黑體";
-	}
-table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
-}
-th, td {
-    padding: 5px;
-    text-align: left;    
-}
-tr,th {
-	padding: 15px;
-}
-.fixing{
-	background: orange;
-	cursor: no-drop;
-}
-.max{
-	background: red;
-	color: white;
-	cursor: no-drop;
-}
-.remaining{
-	background: purple;
-	color:white;
-	cursor: pointer;
-}
-.remaining:hover{
-	background: #BF03BF;
-}
-.clear{
-	color:black;
-    cursor: pointer;
-}
-.clear:hover{
-	background: #bbb;
-	color:white;
-}
-.disable{
-	background: #b3b3b3;
-	color:white;
-	cursor: no-drop;
-}
-body{
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-</style>
+	<meta charset="utf-8"/>
+	<title>Selector</title>
+	<style type="text/css">
+		body{
+			-webkit-touch-callout: none;
+			-webkit-user-select: none;
+			-khtml-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+		}
+		*{	
+			font-family: "微軟正黑體";
+		}
+
+		.fs th {
+	    	border: 1px solid black;
+		}
+
+		.fs td {
+	    	border: 1px solid black;
+		}
+
+		.ft{
+			border-collapse: collapse;
+		}
+		.ft th {
+	    	border: 1px solid black;
+		}
+		.ft td {
+	    	border: 1px solid black;
+		}
+
+		.monitor{
+			cursor: pointer;
+			-webkit-touch-callout: none;
+			-webkit-user-select: none;
+			-khtml-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+		}
+		.mh-box{
+			text-align: center;
+		}
+		.fortime{
+			width: 120px;
+			height: 64px;
+		}
+		.forscreen{
+			width: 64px;
+			height: 64px;
+		}
+		.status-remaining{
+			background: #26A65B;
+			color: white;
+			transition: 0.2s;
+		}
+		.status-remaining:hover{
+			background: #114E2A;
+			transition: 0.2s;
+		}
+		.status-max{
+			background: #96281B;
+			color: white;
+			transition: 0.2s;
+		}
+		.status-max:hover{
+			background: #711308;
+			transition: 0.2s;
+		}
+		.status-disable{
+			background: #ECECEC;
+			color: black;
+			transition: 0.2s;
+		}
+		.status-fixing{
+			background: #F4D03F;
+			color: white;
+			transition: 0.2s;
+		}
+		.selected{
+			color:white !important;
+			background: #663399 !important;
+			transition: 0.2s;
+		}
+		.selected:hover{
+			color:white !important;
+			background: #2D0554 !important;
+			transition: 0.2s;
+		}
+	</style>
 </head>
 <body>
+<table class="monitor fs" oncontextmenu="javascript:return false;">
+	<tr class="mv-line">
+		<td class="mh-box forscreen status-remaining selected" sv="1-1">1-1</td>
+		<td class="mh-box forscreen status-max" sv="1-2">1-2</td>
+	</tr>
+	<tr>
+		<td class="mh-box forscreen status-disable" sv="X">X</td>
+		<td class="mh-box forscreen status-fixing" sv="X">2-2</td>
+	</tr>
+</table>
 
-<h2>Date Selector:</h2>
-<table style="" oncontextmenu="javascript:return false;">
-  <tr>
-    <th>日期<br>時間</th>
-    <th>10/01</th>
-    <th>10/02</th>
-    <th>10/03</th>
-    <th>10/04</th>
-    <th>11/15</th>
-    <th>11/16</th>
-    <th>11/17</th>
-    <th>11/17</th>
-    <th>11/17</th>
-    <th>11/17</th>
-    <th>11/17</th>
-    <th>11/17</th>
-    <th>11/17</th>
-    <th>11/17</th>
-    <th>11/17</th>
-    <th>11/17</th>
-  </tr>
-  	<tr>
-  		<th>00:00 ~ 01:00</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  	</tr>
-  	<tr>
-  		<th>01:00 ~ 02:00</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  	</tr>
-    <tr>
-    	<th>02:00 ~ 03:00</th>
-    	<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-    </tr>
-    <tr>
-    	<th>03:00 ~ 04:00</th>
-    	<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-    </tr>
-    <tr>
-    	<th>04:00 ~ 05:00</th>
-    	<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-    </tr>
-    <tr>
-    	<th>05:00 ~ 06:00</th>
-    	<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-    </tr>
-    <tr>
-    	<th>06:00 ~ 07:00</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    </tr>
-    <tr>
-    	<th>07:00 ~ 08:00</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    </tr>
-    <tr>
-    	<th>08:00 ~ 09:00</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    </tr>
-    <tr>
-    	<th>09:00 ~ 10:00</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    </tr>
-    <tr>
-    	<th>10:00 ~ 11:00</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    </tr>
-    <tr>
-    	<th>11:00 ~ 12:00</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    </tr>
-    <tr>
-    	<th>12:00 ~ 13:00</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="max">時段已滿</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-		<th class="max">時段已滿</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="max">時段已滿</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    </tr>
-    <tr>
-    	<th>13:00 ~ 14:00</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    </tr>
-    <tr>
-    	<th>14:00 ~ 15:00</th>
-    	<th class="disable">保留時段</th>
-    	<th class="disable">保留時段</th>
-    	<th class="disable">保留時段</th>
-    	<th class="disable">保留時段</th>
-    	<th class="disable">保留時段</th>
-    	<th class="disable">保留時段</th>
-    	<th class="disable">保留時段</th>
-    	<th class="disable">保留時段</th>
-    	<th class="disable">保留時段</th>
-    	<th class="disable">保留時段</th>
-    	<th class="disable">保留時段</th>
-    	<th class="disable">保留時段</th>
-    	<th class="disable">保留時段</th>
-    	<th class="disable">保留時段</th>
-    	<th class="disable">保留時段</th>
-    	<th class="disable">保留時段</th>
-    </tr>
-    <tr>
-    	<th>15:00 ~ 16:00</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    </tr>
-    <tr>
-    	<th>16:00 ~ 17:00</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    </tr>
-    <tr>
-    	<th>17:00 ~ 18:00</th>
-    	<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-  		<th class="fixing">維修時段</th>
-    </tr>
-    <tr>
-    	<th>18:00 ~ 19:00</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    </tr>
-    <tr>
-    	<th>19:00 ~ 20:00</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    </tr>
-    <tr>
-    	<th>20:00 ~ 21:00</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="max">時段已滿</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="max">時段已滿</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    </tr>
-    <tr>
-    	<th>21:00 ~ 22:00</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="max">時段已滿</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="max">時段已滿</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    </tr>
-    <tr>
-    	<th>22:00 ~ 23:00</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="max">時段已滿</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="max">時段已滿</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="max">時段已滿</th>
-    	<th class="max">時段已滿</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    </tr>
-    <tr>
-    	<th>23:00 ~ 24:00</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    	<th class="remaining">尚有空位</th>
-    </tr>
+<table class="monitor ft" oncontextmenu="javascript:return false;">
+	<tr class="mv-line">
+		<td class="mh-box">6:00 ~ 6:55</td>
+		<td class="mh-box fortime status-remaining" sv="1-1 2016-02-20 06:00~06:55">空白時段</td>
+		<td class="mh-box fortime status-max" sv="X">預定時間已滿</td>
+	</tr>
+	<tr>
+		<td class="mh-box fortime status-disable" sv="X">關閉</td>
+		<td class="mh-box fortime status-fixing" sv="X">維修中</td>
+	</tr>
 </table>
 
 <script type="text/javascript">
-  document.body.onContextMenu = function(){ return false;}
-	
-  var mouseDown;
+	var mouseDown;
 	document.body.onmousedown = function() {
-	  mouseDown=true;
+		mouseDown = true;
 	}
 	document.body.onmouseup = function() {
-	  mouseDown=false;
+		mouseDown = false;
 	}
 
-	 var classname = document.getElementsByClassName("remaining");
-
-    var myFunction = function() {
-        var attribute = this.getAttribute("time_id");
-        alert(attribute);
-    };
-
-    for(var i=0;i<classname.length;i++){
-    	classname[i].setAttribute("time_id",i);
-    	classname[i].setAttribute("select","no");
-      //classname[i].addEventListener('click', setTime, false);
-      classname[i].addEventListener('mousedown', setTime, false);
-      //classname[i].addEventListener('mouseleave', hoverSetTime, false);
-      classname[i].addEventListener('mouseover', hoverSetTime, false);
-    }
-
-
-
-    var timeObject = [];
-
-    function hoverSetTime(e){
-    	if(mouseDown){
-    		var isSelect = this.getAttribute("select") == "no" ? false : true;
-	    	if(e.button === 2){
-          if(isSelect){
-            unwhite(this);
-            setOut(this.getAttribute("time_id"));
-          }
-        }else{
-          if(!isSelect){
-            white(this);
-            setIn(this.getAttribute("time_id"));
-          }
-        }
-    	}
-    }
-
-    function setTime(e){
-    	var isSelect = this.getAttribute("select") == "no" ? false : true;
-      if(e.button === 2){
-        if(isSelect){
-          unwhite(this);
-          setOut(this.getAttribute("time_id"));
-        }
-      }else{
-      	if(!isSelect){
-      		white(this);
-          setIn(this.getAttribute("time_id"));
-      	}
-      }
-    }
-
-    function setIn(id){
-    	timeObject.push(id);
-    }
-
-    function setOut(id){
-		var index = timeObject.indexOf(id);
-		if (index >= 0) {
-		  timeObject.splice( index, 1 );
+	//for screen select
+	var screens_data = [];
+	// init all event selector
+	var for_screen_class = document.getElementsByClassName("forscreen")
+	function screen_select_event(e){
+		function SetIn(t){
+			if(t.getAttribute("sv").toUpperCase() != "X" && t.className.indexOf("selected") == -1){
+				t.className = t.className + " selected";
+				//setting up here to put your data in array
+				setInScreens(t.getAttribute("sv"));
+			}
 		}
-    }
+		function SetOut(t){
+			if(t.getAttribute("sv").toUpperCase() != "X" && t.className.indexOf("selected") != -1){
+				t.className = t.className.replace(/ selected/gi,"");
+				//setting up here to remove your data in array
+				setOutScreens(t.getAttribute("sv"));
+			}
+		}
+		if(e.type == "mousedown"){
+			console.log(e.button);
+			if(e.button === 0){
+				SetIn(this);
+			}else{
+				SetOut(this);
+			}
+		}else if(e.type == "mouseover"){
+			if(mouseDown){
+				if(e.button === 0){
+					SetIn(this);
+				}else{
+					SetOut(this);
+				}
+			}
+		}
+	}
+	//remove object
+	function setInScreens(id) {
+		screens_data.push(id);
+	}
+	
+	//put object
+	function setOutScreens(id) {
+		var index = screens_data.indexOf(id);
+		if (index >= 0)
+			screens_data.splice(index, 1);
+	}
 
-    function white(e){
-    	e.style.background = "green";
-    	e.setAttribute("select","yes");
-    	e.innerHTML = "您已選取";
-    }
+	for(var i=0;i<for_screen_class.length;i++){
+		for_screen_class[i].addEventListener("mousedown",screen_select_event,false);
+		for_screen_class[i].addEventListener("mouseover",screen_select_event,false);
+	}
 
-    function unwhite(e){
-		e.style.background = "purple";
-    	e.setAttribute("select","no");
-    	e.innerHTML = "尚有空位";
-    }
+	//////////////////////////////
+	var time_data = []
+	var for_time_class = document.getElementsByClassName("fortime");
+
+	function time_select_event(e){
+		function SetIn(t){
+			if(t.getAttribute("sv").toUpperCase() != "X" && t.className.indexOf("selected") == -1){
+				t.className = t.className + " selected";
+				//setting up here to put your data in array
+				setInTime(t.getAttribute("sv"));
+			}
+		}
+		function SetOut(t){
+			if(t.getAttribute("sv").toUpperCase() != "X" && t.className.indexOf("selected") != -1){
+				t.className = t.className.replace(/ selected/gi,"");
+				//setting up here to remove your data in array
+				setOutTime(t.getAttribute("sv"));
+			}
+		}
+		if(e.type == "mousedown"){
+			console.log(e.button);
+			if(e.button === 0){
+				SetIn(this);
+			}else{
+				SetOut(this);
+			}
+		}else if(e.type == "mouseover"){
+			if(mouseDown){
+				if(e.button === 0){
+					SetIn(this);
+				}else{
+					SetOut(this);
+				}
+			}
+		}
+	}
+	//remove object
+	function setInTime(id) {
+		time_data.push(id);
+	}
+	
+	//put object
+	function setOutTime(id) {
+		var index = time_data.indexOf(id);
+		if (index >= 0)
+			time_data.splice(index, 1);
+	}
+
+	for(var i=0;i<for_time_class.length;i++){
+		for_time_class[i].addEventListener("mousedown",time_select_event,false);
+		for_time_class[i].addEventListener("mouseover",time_select_event,false);
+	}
+
 </script>
 </body>
 </html>
